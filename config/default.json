@@ -1,4 +1,6 @@
 {
     "mongoURI": "mongodb+srv://jorge123:jorge123@atlascluster.bliyszk.mongodb.net/?retryWrites=true&w=majority",
-    "jwtSecret": "mysecrettoken"
+    "jwtSecret": "mysecrettoken",
+    "githubClientId": "484799419eeb1ec7b158",
+    "githubSecret": "572542487137d8d07e9956814b79044be74e6e0b"
 }
