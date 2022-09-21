@@ -1,25 +1,31 @@
 import React, { Fragment } from 'react';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
+import Alert from './components/layout/Alert';
 import './App.css';
-import LandingNavbar from './components/layout/LandingNavbar';
+// Redux
+import { Provider } from 'react-redux';
+import store from './store';
 
 const App = () => (
-  <BrowserRouter>
-  <Navbar />
-  <Routes>
+  <Provider store={store}>
+  <Router>
     <Fragment>
-      
-      <Route exact path="/" element={<LandingNavbar />} />
-      {/* <Route exact path="/" element={<Landing />} /> */}
-        <Route exact path="/register" element={<Register />} />
-        <Route exact path="/login" element={<Login />} />
+      <Navbar />
+      <Route exact path="/" component={Landing} />
+      <section className='container'>
+        <Alert />
+        <Switch>
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
+        </Switch>
+      </section>
     </Fragment>
-  </Routes>
-  </BrowserRouter>
+  </Router>
+  </Provider>
 );
 
 export default App;
