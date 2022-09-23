@@ -7,6 +7,8 @@ const request = require('request');
 const config = require('config');
 const { check, validationResult } = require('express-validator');
 const { set } = require('mongoose');
+const Post = require('../../models/Posts');
+const Posts = require('../../models/Posts');
 
 // @route   GET api/profile/me
 // @desc    Get current users profile
@@ -138,8 +140,8 @@ router.get('/user/:user_id', async (req, res) => {
 // @acces   Private
 router.delete('/', auth, async (req, res) => {
     try{
-        // @todo - remove users posts
-
+        // Remove users posts
+        await Post.deleteMany({ user: req.user.id });
         // Remove profile
         await Profile.findOneAndDelete({ user: req.user.id });
         // Remove user
